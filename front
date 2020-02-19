@@ -1,0 +1,76 @@
+import 'package:flutter/material.dart';
+import 'pessoa.dart';
+import 'dart:convert';
+import 'API.dart';
+
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Login',
+      theme: ThemeData(
+        primarySwatch: Colors.pink,
+      ),
+      home: HomePage()
+    );
+  }
+}
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title:Text("Login")),
+      body: Column(children: <Widget>[Divider(height: 2,),Text("Seja bem-vindo"),
+      Divider(),Text("Clique no botam abaixo para listar as pessoas cadastradas"),
+      Divider(height: 5,),RaisedButton(child: Text("Listar"),onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => Pag2()));}, textColor: Colors.red),
+      ])
+    );
+  }
+}
+
+class Pag2 extends StatefulWidget {
+  @override
+  _Pag2State createState() => _Pag2State();
+}
+
+class _Pag2State extends State<Pag2> {
+  var users = new List<Pessoa>();
+
+  _getUsers() {
+    API.getUsers().then((response) {
+      setState(() {
+        Iterable list = json.decode(response.body);
+        users = list.map((model) => Pessoa.fromJson(model)).toList();
+      });
+    });
+  }
+
+  initState() {
+    super.initState();
+    _getUsers();
+  }
+
+  dispose() {
+    super.dispose();
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Pessoas cadastradas"),),
+      floatingActionButton: FloatingActionButton(child: Icon(Icons.check), onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));}),
+      body: ListView.builder(
+          itemCount: users.length,
+          itemBuilder: (context, index) {
+            return ListTile(title: Text(users[index].nome));
+          },
+        )
+      
+      
+    );
+  }
+}
