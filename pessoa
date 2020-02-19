@@ -1,0 +1,13 @@
+class Pessoa{
+   String nome;
+   String senha;
+
+   Pessoa({this.nome,this.senha});
+ Pessoa.fromJson(Map json)
+      : nome = json['nome'],
+        senha = json['senha'];
+
+  Map toJson() {
+    return {'nome': nome, 'senha': senha};
+  }
+}
