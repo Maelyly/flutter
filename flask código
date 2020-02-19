@@ -1,0 +1,20 @@
+from flask import Flask, jsonify
+import json
+from flask import Response
+
+app = Flask(__name__)
+
+@app.route("/",methods = ['GET','POST',])
+def index():
+    result = [
+        {"nome": "Maria", "senha": "alo12345"},
+        {"nome":"Jose","senha":"aaa87543"},
+        {"nome":"Pedro","senha":"bbb35464"},
+    ]
+    return Response(json.dumps(result),mimetype='application/json')
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
+    
+    
+#código rodado no pyCharm com python 2.7 e Flask instalado
