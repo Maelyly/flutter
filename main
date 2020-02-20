@@ -5,7 +5,7 @@ import 'API.dart';
 
 
 void main() => runApp(MyApp());
-
+var novos = new Pessoa();
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -23,10 +23,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.pinkAccent,
       appBar: AppBar(title:Text("Login")),
-      body: Column(children: <Widget>[Divider(height: 2,),Text("Seja bem-vindo"),
-      Divider(),Text("Clique no botam abaixo para listar as pessoas cadastradas"),
-      Divider(height: 5,),RaisedButton(child: Text("Listar"),onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => Pag2()));}, textColor: Colors.red),
+      body: Column(children: <Widget>[Divider(height: 2,),Text("Seja bem-vindo",style: TextStyle(color: Colors.white,fontSize: 20)),
+      Divider(),Text("Escolha entre se cadastrar e listar os usuários",style: TextStyle(color: Colors.white,fontSize: 14)),
+      Divider(height: 20,),RaisedButton(shape: new RoundedRectangleBorder(borderRadius: 
+new BorderRadius.circular(30.0)),child: Text("Listar",style: TextStyle(fontSize: 20)),onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => Pag2()));}, textColor: Colors.blue,color:Colors.white),
+      Divider(height: 3,),RaisedButton(shape: new RoundedRectangleBorder(borderRadius: 
+new BorderRadius.circular(30.0)),child: Text("Cadastrar",style: TextStyle(fontSize: 20)),onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));}, textColor: Colors.blue,color:Colors.white),
       ])
     );
   }
@@ -45,6 +49,7 @@ class _Pag2State extends State<Pag2> {
       setState(() {
         Iterable list = json.decode(response.body);
         users = list.map((model) => Pessoa.fromJson(model)).toList();
+        pre();
       });
     });
   }
@@ -57,20 +62,126 @@ class _Pag2State extends State<Pag2> {
   dispose() {
     super.dispose();
   }
-  
+  pre(){
+    if(novos!=null){ 
+      users.add(novos);   
+    }
+  }
+  String alo="fim";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.pinkAccent,
       appBar: AppBar(title: Text("Pessoas cadastradas"),),
       floatingActionButton: FloatingActionButton(child: Icon(Icons.check), onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));}),
       body: ListView.builder(
           itemCount: users.length,
           itemBuilder: (context, index) {
-            return ListTile(title: Text(users[index].nome));
+            if(users[index].nome!=null){
+               alo = users[index].nome;
+            }
+            return ListTile(title: Text(alo,style: TextStyle(color: Colors.white,fontSize: 20)));
           },
         )
       
-      
     );
   }
+  
+}
+
+class Login extends StatefulWidget {
+  @override
+  _LoginState createState() => _LoginState();
+  
+}
+class _LoginState extends State<Login> {
+  final TextEditingController _emailFilter = new TextEditingController();
+  final TextEditingController _passwordFilter = new TextEditingController();
+  String _email = "";
+  String _password = "";
+  @override
+  _LoginPageState() {
+    _emailFilter.addListener(_emailListen);
+    _passwordFilter.addListener(_passwordListen);
+  }
+
+   _emailListen() {
+    if (_emailFilter.text.isEmpty) {
+       return "Informe a senha";
+    } else {
+      _email = _emailFilter.text;
+    }
+  }
+
+   _passwordListen() {
+    if (_passwordFilter.text.isEmpty) {
+       return "Informe o login";
+    } else {
+      _password = _passwordFilter.text;
+    }
+  }
+ initState() {
+    super.initState();
+    _LoginPageState();
+  }
+
+  dispose() {
+    super.dispose();
+  }
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.pinkAccent,
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+               TextField(
+                autofocus: true,
+                keyboardType: TextInputType.text,
+                style: TextStyle(color: Colors.blue, fontSize: 30),
+                controller: _emailFilter,
+                decoration: InputDecoration(
+                  labelText:"Email",
+                  labelStyle: TextStyle(color: Colors.white),
+                )
+           ),
+              Divider(),
+              TextField(
+                autofocus: true,
+                obscureText: true,
+                keyboardType: TextInputType.text,
+                style: TextStyle(color: Colors.blue, fontSize: 30),
+                controller: _passwordFilter,
+                decoration: InputDecoration(
+                  labelText:"Senha do usuário",
+                  labelStyle: TextStyle(color: Colors.white),
+                )
+              ),
+              Divider(),
+              ButtonTheme(
+                height: 60.0,
+                child: RaisedButton(
+                  onPressed: () => {
+                    novos = Pessoa.construtor(_email,_password),
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()))
+                  },
+                  shape: new RoundedRectangleBorder(borderRadius: 
+new BorderRadius.circular(30.0)),
+                  child: Text(
+                    "Cadastrar",
+                    style: TextStyle(color: Colors.blue, fontSize: 30),
+                  ),
+                  color:Colors.white,
+                ),
+              ),
+            ],
+         ),
+        ),
+      )
+   );
+  }
+ 
 }
