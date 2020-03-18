@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'pessoa.dart';
+import 'Pessoa.dart';
 import 'dart:convert';
 import 'API.dart';
 
 
 void main() => runApp(MyApp());
 var novos = new Pessoa();
+var listanovos = new List<Pessoa>();
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -63,8 +64,8 @@ class _Pag2State extends State<Pag2> {
     super.dispose();
   }
   pre(){
-    if(novos!=null){ 
-      users.add(novos);   
+    if(listanovos!=null){ 
+      users.addAll(listanovos);   
     }
   }
   String alo="fim";
@@ -166,6 +167,7 @@ class _LoginState extends State<Login> {
                 child: RaisedButton(
                   onPressed: () => {
                     novos = Pessoa.construtor(_email,_password),
+                    listanovos.add(novos),
                     Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()))
                   },
                   shape: new RoundedRectangleBorder(borderRadius: 
