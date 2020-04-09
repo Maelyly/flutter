@@ -14,4 +14,13 @@ class Pessoa{
   Map toJson() {
     return {'nome': nome, 'senha': senha};
   }
+
+  bool equals(Pessoa compare1,Pessoa compare2){
+       if(compare1.nome == compare2.nome){
+          if(compare1.senha == compare2.senha){
+                return true;
+          }
+       }
+       return false;
+  }
 }
