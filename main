@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Login',
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        primarySwatch: Colors.blue,
       ),
       home: HomePage()
     );
@@ -26,16 +26,16 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pinkAccent,
+      backgroundColor: Colors.white,
       appBar: AppBar(title:Text("Login")),
-      body: Column(children: <Widget>[Divider(height: 2,),Text("Seja bem-vindo",style: TextStyle(color: Colors.white,fontSize: 20)),
-      Divider(),Text("Escolha entre se cadastrar e listar os usuários",style: TextStyle(color: Colors.white,fontSize: 14)),
-      Divider(height: 20,),RaisedButton(shape: new RoundedRectangleBorder(borderRadius: 
-new BorderRadius.circular(30.0)),child: Text("Listar",style: TextStyle(fontSize: 20)),onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => Pag2()));}, textColor: Colors.blue,color:Colors.white),
-      Divider(height: 3,),RaisedButton(shape: new RoundedRectangleBorder(borderRadius: 
-new BorderRadius.circular(30.0)),child: Text("Cadastrar",style: TextStyle(fontSize: 20)),onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));}, textColor: Colors.blue,color:Colors.white),
-Divider(height: 3,),RaisedButton(shape: new RoundedRectangleBorder(borderRadius: 
-new BorderRadius.circular(30.0)),child: Text("Login",style: TextStyle(fontSize: 20)),onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>WidgetLogin()));}, textColor: Colors.blue,color:Colors.white),
+      body: Column(children: <Widget>[Divider(height: 3,),Text("Seja bem-vindo(a)",style: TextStyle(color: Colors.orangeAccent,fontSize: 20),textAlign: TextAlign.center,),
+      Divider(height: 20,),Text("Clique em login para entrar ou em cadastrar para criar um perfil",style: TextStyle(color: Colors.orangeAccent,fontSize: 20),textAlign: TextAlign.center,),
+     // Divider(height: 300,),RaisedButton(shape: new RoundedRectangleBorder(borderRadius: 
+//new BorderRadius.circular(30.0)),child: Text("Listar",style: TextStyle(fontSize: 20)),onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => Pag2()));}, textColor: Colors.blue,color:Colors.white),
+      Divider(height: 100,),RaisedButton(shape: new RoundedRectangleBorder(borderRadius: 
+new BorderRadius.circular(60.0)),child: Text("Cadastrar",style: TextStyle(fontSize: 30),textAlign: TextAlign.center,),onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));}, textColor: Colors.white,color:Colors.orangeAccent),
+Divider(height: 30,),RaisedButton(shape: new RoundedRectangleBorder(borderRadius: 
+new BorderRadius.circular(60.0)),child: Text("Login",style: TextStyle(fontSize: 30),textAlign: TextAlign.center,),onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) =>WidgetLogin()));}, textColor: Colors.white,color:Colors.orangeAccent),
       ])
     );
   }
@@ -76,8 +76,8 @@ class _Pag2State extends State<Pag2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pinkAccent,
-      appBar: AppBar(title: Text("Pessoas cadastradas"),),
+      backgroundColor: Colors.white,
+      appBar: AppBar(title: Text("Pessoas cadastradas"),backgroundColor: Colors.orangeAccent,),
       floatingActionButton: FloatingActionButton(child: Icon(Icons.check), onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));}),
       body: ListView.builder(
           itemCount: users.length,
@@ -85,7 +85,7 @@ class _Pag2State extends State<Pag2> {
             if(users[index].nome!=null){
                alo = users[index].nome;
             }
-            return ListTile(title: Text(alo,style: TextStyle(color: Colors.white,fontSize: 20)));
+            return ListTile(title: Text(alo,style: TextStyle(color: Colors.blue,fontSize: 30),textAlign: TextAlign.center,));
           },
         )
       
@@ -148,15 +148,15 @@ class _WidgetLoginState extends State<WidgetLogin> {
                  
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32.0), 
-          borderSide: BorderSide(color: Colors.purple),
+          borderSide: BorderSide(color: Colors.blueAccent),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32.0), 
-          borderSide: BorderSide(color: Colors.purple),
+          borderSide: BorderSide(color: Colors.blueAccent),
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32.0), 
-          borderSide: BorderSide(color: Colors.purple)),
+          borderSide: BorderSide(color: Colors.blueAccent)),
       ),
 
       style: TextStyle(fontSize: 20.0, color: Colors.black, decorationColor: Colors.purple),
@@ -183,15 +183,15 @@ class _WidgetLoginState extends State<WidgetLogin> {
                  
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32.0), 
-          borderSide: BorderSide(color: Colors.purple),
+          borderSide: BorderSide(color: Colors.orangeAccent),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32.0), 
-          borderSide: BorderSide(color: Colors.purple),
+          borderSide: BorderSide(color: Colors.orangeAccent),
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(32.0), 
-          borderSide: BorderSide(color: Colors.purple)),
+          borderSide: BorderSide(color: Colors.orangeAccent)),
       ),
 
       style: TextStyle(fontSize: 20.0, color: Colors.black, decorationColor: Colors.purple),
@@ -216,7 +216,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
       
       child: RaisedButton(
         
-        color: Colors.purple,
+        color: Colors.orangeAccent,
         child: Text("Entrar",
           textAlign: TextAlign.center,
           style: style.copyWith(
@@ -237,7 +237,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
           for(Pessoa f in listanovos){
             if(f.equals(f, existe)){
               debugPrint("Login feito com sucesso");
-              Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Pagina3()));
             }
             else{
               debugPrint("Login inexistente, cadastre antes");
@@ -257,12 +257,14 @@ class _WidgetLoginState extends State<WidgetLogin> {
 
   }
 }
+
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
   
 }
 class _LoginState extends State<Login> {
+   GlobalKey<FormState> formkey2 = GlobalKey<FormState>();  
   final TextEditingController _emailFilter = new TextEditingController();
   final TextEditingController _passwordFilter = new TextEditingController();
   String _email = "";
@@ -275,7 +277,7 @@ class _LoginState extends State<Login> {
 
    _emailListen() {
     if (_emailFilter.text.isEmpty) {
-       return "Informe a senha";
+       return Text("Informe a senha");
     } else {
       _email = _emailFilter.text;
     }
@@ -283,7 +285,7 @@ class _LoginState extends State<Login> {
 
    _passwordListen() {
     if (_passwordFilter.text.isEmpty) {
-       return "Informe o login";
+       return Text("Informe o email");
     } else {
       _password = _passwordFilter.text;
     }
@@ -298,50 +300,136 @@ class _LoginState extends State<Login> {
   }
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pinkAccent,
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
+      backgroundColor: Colors.white,
+      body: Center(
+      child: Container(
+        height: 500.0,
         child: Center(
+           child: Form(
+              key: formkey2,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-               TextField(
-                autofocus: true,
-                keyboardType: TextInputType.text,
-                style: TextStyle(color: Colors.blue, fontSize: 30),
-                controller: _emailFilter,
-                decoration: InputDecoration(
-                  labelText:"Email",
-                  labelStyle: TextStyle(color: Colors.white),
-                )
-           ),
-              Divider(),
-              TextField(
-                autofocus: true,
-                obscureText: true,
-                keyboardType: TextInputType.text,
-                style: TextStyle(color: Colors.blue, fontSize: 30),
-                controller: _passwordFilter,
-                decoration: InputDecoration(
-                  labelText:"Senha do usuário",
-                  labelStyle: TextStyle(color: Colors.white),
-                )
+                TextFormField(
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                    labelText: "Login",
+                            
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(32.0), 
+                      borderSide: BorderSide(color: Colors.orangeAccent),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(32.0), 
+                      borderSide: BorderSide(color: Colors.orangeAccent),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(32.0), 
+                      borderSide: BorderSide(color: Colors.orangeAccent)),
+                  ),
+
+                  style: TextStyle(fontSize: 20.0, color: Colors.black, decorationColor: Colors.blueAccent),
+                
+                            
+                  validator: (value){
+                    if(value.isEmpty){
+                      return "Informe o Login";
+                    }
+                      return null;
+                  },
+                  controller: _emailFilter,
+                   
+                  
               ),
-              Divider(),
+              Divider(height: 30,),
+                  TextFormField(
+          obscureText: true,
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            labelText: "Nome",
+                    
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(32.0), 
+              borderSide: BorderSide(color: Colors.orangeAccent),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(32.0), 
+              borderSide: BorderSide(color: Colors.orangeAccent),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(32.0), 
+              borderSide: BorderSide(color: Colors.orangeAccent)),
+          ),
+
+            style: TextStyle(fontSize: 20.0, color: Colors.black, decorationColor: Colors.blueAccent),
+
+                      
+            validator: (value){
+              if(value.isEmpty){
+                return "Informe seu nome";
+              }
+                return null;
+            },  
+              ),
+                  Divider(height: 30,),
+                  TextFormField(
+          obscureText: true,
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+            labelText: "Senha",
+                    
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(32.0), 
+              borderSide: BorderSide(color: Colors.orangeAccent),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(32.0), 
+              borderSide: BorderSide(color: Colors.orangeAccent),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(32.0), 
+              borderSide: BorderSide(color: Colors.orangeAccent)),
+          ),
+
+            style: TextStyle(fontSize: 20.0, color: Colors.black, decorationColor: Colors.purple),
+
+                      
+            validator: (value){
+              if(value.isEmpty){
+                return "Informe a sua senha";
+              }
+                return null;
+            },
+            controller: _passwordFilter,
+           
+                
+              ),
+              Divider(height: 30,),
               ButtonTheme(
                 height: 60.0,
                 child: RaisedButton(
                   onPressed: () => {
-                    novos = Pessoa.construtor(_email,_password),
-                    listanovos.add(novos),
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()))
+                    formkey2.currentState.validate(),
+                    if(_email.isNotEmpty & _password.isNotEmpty){
+                        novos = Pessoa.construtor(_email,_password),
+                        if(!listanovos.contains(novos)){
+                           listanovos.add(novos),  
+                           debugPrint("Cadastrado com sucesso"),
+                        },
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()))
+                    }
+                    else{
+                      debugPrint("Informações necessárias não informadas")
+                      
+                    }
+                   
                   },
                   shape: new RoundedRectangleBorder(borderRadius: 
 new BorderRadius.circular(30.0)),
                   child: Text(
                     "Cadastrar",
-                    style: TextStyle(color: Colors.blue, fontSize: 30),
+                    style: TextStyle(color: Colors.orangeAccent, fontSize: 30),
                   ),
                   color:Colors.white,
                 ),
@@ -350,8 +438,29 @@ new BorderRadius.circular(30.0)),
          ),
         ),
       )
-   );
+   ),
+      ),
+    );
   }
   
  
+}
+
+class Pagina3 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(title: Text("Bem-vindo(a)!",),),
+    body: Center( 
+      child: Container(
+        height: 500.0,
+        child: Column(children: <Widget>[Divider(height: 300,),Text("Esse é uma visão de como será a plataforma do ODG"),],),
+      ),
+     
+
+    )
+      
+    );
+  }
 }
